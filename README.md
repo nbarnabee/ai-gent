@@ -12,4 +12,6 @@ Usage:
 
 `python3 main.py <PROMPT>`
   
-Also accepts the `--verbose` flag, which will print the initial prompt and token information.
+Also accepts the `--verbose` flag, which will print the initial prompt and token information.  
+
+Also note that YOU SHOULD PROBABLY NOT RANDOMLY DOWNLOAD AND USE THIS
