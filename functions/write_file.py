@@ -1,6 +1,6 @@
 import os
 
-def write_file(working_directory, file_path, content):
+def write_file(working_directory, file_path=None, content=""):
     abs_file_path = os.path.abspath(os.path.join(working_directory, file_path))
 
     if not abs_file_path.startswith(os.path.abspath(working_directory)):
@@ -14,6 +14,3 @@ def write_file(working_directory, file_path, content):
 
     except Exception as e:
         return f'Error: error writing to file "{file_path}": {e}'
-
-
-    return f'moving on..'
