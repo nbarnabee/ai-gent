@@ -1,6 +1,7 @@
 import os
 import sys
 import pprint
+from call_function import call_function
 from dotenv import load_dotenv
 from google import genai
 from google.genai import types
@@ -26,7 +27,7 @@ All paths you provide should be relative to the working directory. You do not ne
 
 if len(sys.argv) > 1:
     user_prompt = sys.argv[1]
-    isVerbose = "--verbose" in sys.argv
+    verbose = "--verbose" in sys.argv
     messages = [
             types.Content(role="user", parts=[types.Part(text=user_prompt)])
         ]
@@ -44,15 +45,21 @@ if len(sys.argv) > 1:
         function_calls_list = response.function_calls
 
         if function_calls_list and len(function_calls_list):
-            for item in function_calls_list:
-                print(f"Calling function: {item.name}({item.args})")
+            for function_call in function_calls_list:
+                result = call_function(function_call, verbose)
+
+                if result.parts[0].function_response.response:
+                    if verbose:
+                        print(f"-> {result.parts[0].function_response.response}")
+
+                else:
+                    raise Exception("something went wrong")
+
 
         else:
             print(response.text)
 
-        # pprint.pprint(response) # for viewing the full response
-
-        if (isVerbose):
+        if verbose:
             print(f"User prompt: {user_prompt}")
             print(f"Prompt tokens: {metadata.prompt_token_count}")
             print(f"Response tokens: {metadata.candidates_token_count}")
