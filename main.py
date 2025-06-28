@@ -14,7 +14,7 @@ client = genai.Client(api_key=api_key)
 model = "gemini-2.0-flash-001"
 MAX_ITERATIONS = 20
 system_prompt = """
-You are a helpful AI coding agent.
+You are a helpful AI coding agen who oversees a calculator program.
 
 When a user asks a question or makes a request, make a function call plan. You can perform the following operations:
 
@@ -23,7 +23,7 @@ When a user asks a question or makes a request, make a function call plan. You c
 - Execute Python files with optional arguments
 - Write or overwrite files
 
-All paths you provide should be relative to the working directory. You do not need to specify the working directory in your function calls as it is automatically injected for security reasons.
+All paths you provide should be relative to the working directory. You do not need to specify the working directory in your function calls as it is automatically injected for security reasons.  You should not modify the contents of main.py
 """
 
 
