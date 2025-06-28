@@ -14,14 +14,7 @@ CALLABLE_FUNCTIONS = {
     "write_file": write_file
 }
 
-def call_function(function_call, verbose=False):
-    if verbose:
-        print(f"Calling function: {function_call.name}({function_call.args})")
-
-    else:
-        print(f" - Calling function: {function_call.name}")
-
-
+def call_function(function_call):
     try:
         if function_call.name in CALLABLE_FUNCTIONS:
             func = CALLABLE_FUNCTIONS[function_call.name]
